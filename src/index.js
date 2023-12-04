@@ -105,6 +105,13 @@ app.get('/hamburguesa/vegana',(req,res)=>{
     res.render('home')
 })
 
+app.get('/hamburguesa/contacto',(req,res)=>{
+    res.render('contactos')
+})
+
+app.get('/hamburguesa/about',(req,res)=>{
+    res.render('about')
+})
 
 //ubicacion del directorio views
 //const ruta = path.join(__dirname, "views")
