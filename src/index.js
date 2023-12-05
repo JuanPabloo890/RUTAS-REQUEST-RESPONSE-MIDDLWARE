@@ -117,20 +117,66 @@ app.get('/hamburguesa/about',(req,res)=>{
 //const ruta = path.join(__dirname, "views")
 //app.set('views', ruta)
 
-//alerta para cuando busquen otra pagina que no este definida
-app.use((req,res)=>{
-    res.send("404 - Not Found!")
-})
-
-
-
-
-
 // 100 bloqueos
 // 200 satisfactorio
 // 300 error de redireccion /redireccionamiento
 // 400 error de usuario o del cliente
 // 500 servidor
+
+
+
+// app.get('/', (req,res)=>{
+//     //request de la peticion - cliente
+//     req.body
+//     req.params
+//     req.query
+
+//     //responder al usuario el servidor
+//     res.send()
+//     res.sendFile
+//     res.json()
+//     res.render
+
+// })
+
+
+//PUIBLICA
+app.get('/entrada', (req,res)=>{
+    res.send("Entrada al local")
+})
+
+//MIDDLEWAR
+//PRIVADA
+//crear un middlewar
+app.use(express.json())
+
+app.use((req,res,next)=>{
+    const {email,password} = req.body
+    if(email==="juan@gmail.com" && password === "12345"){
+        next()
+    }else{
+        res.send("Usuario no registrado!!")
+    }
+})
+
+app.get('/pedido', (req,res)=>{
+    res.send(`Bienvenido -${req.body.email}- Listo para tomar su orden`)
+})
+
+app.get('/', (req,res)=>{
+    res.send("Landing page")
+})
+
+app.get('/dashboardd', (req,res)=>{
+    res.send("Bienvenido - Usuario")
+})
+
+
+
+//alerta para cuando busquen otra pagina que no este definida
+app.use((req,res)=>{
+    res.send("404 - Not Found!")
+})
 
 //Iniciar el servidor en el puerto 3000
 app.listen(3000)
